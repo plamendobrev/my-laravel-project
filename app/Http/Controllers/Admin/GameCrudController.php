@@ -70,6 +70,12 @@ class GameCrudController extends CrudController
             'type' => 'text',
             'label' => 'Game Name',
         ]);
+
+        CRUD::addField([
+            'name' => 'description',
+            'type' => 'textarea',
+            'label' => 'Description',
+        ]);
     
         CRUD::addField([
             'name' => 'release_date',
@@ -91,6 +97,13 @@ class GameCrudController extends CrudController
             'type' => 'select',
             'label' => 'Genre',
             'placeholder' => 'Select a genre',
+        ]);
+
+        CRUD::addField([
+            'name' => 'rating',
+            'type' => 'number',
+            'label' => 'Rating',
+            'attributes' => ["step" => "1", "min" => "1", "max" => "5"],
         ]);
     }
 
