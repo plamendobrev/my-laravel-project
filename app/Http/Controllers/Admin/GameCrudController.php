@@ -68,19 +68,19 @@ class GameCrudController extends CrudController
         CRUD::addField([
             'name' => 'name',
             'type' => 'text',
-            'label' => 'Game Name',
+            'label' => 'Game Name'
         ]);
 
         CRUD::addField([
             'name' => 'description',
             'type' => 'textarea',
-            'label' => 'Description',
+            'label' => 'Description'
         ]);
     
         CRUD::addField([
             'name' => 'release_date',
             'type' => 'date',
-            'label' => 'Release Date',
+            'label' => 'Release Date'
         ]);
     
         // Manufacturer Relationship
@@ -88,22 +88,23 @@ class GameCrudController extends CrudController
             'name' => 'manufacturer_id',
             'type' => 'select',
             'label' => 'Manufacturer',
-            'placeholder' => 'Select a manufacturer',
+            'placeholder' => 'Select a manufacturer'
         ]);
     
-        // Genre Relationship
         CRUD::addField([
-            'name' => 'genre_id',
-            'type' => 'select',
-            'label' => 'Genre',
-            'placeholder' => 'Select a genre',
+            'name' => 'genres',
+            'type' => 'select_multiple',
+            'label' => 'Genres',
+            'entity' => 'genres',
+            'attribute' => 'name',
+            'model' => "App\Models\Genre"
         ]);
 
         CRUD::addField([
             'name' => 'rating',
             'type' => 'number',
             'label' => 'Rating',
-            'attributes' => ["step" => "1", "min" => "1", "max" => "5"],
+            'attributes' => ["step" => "1", "min" => "1", "max" => "5"]
         ]);
     }
 
