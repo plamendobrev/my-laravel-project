@@ -106,6 +106,14 @@ class GameCrudController extends CrudController
             'label' => 'Rating',
             'attributes' => ["step" => "1", "min" => "1", "max" => "5"]
         ]);
+
+        $this->crud->addField([
+            'name' => 'cover',
+            'type' => 'upload',
+            'label' => 'Cover Art',
+            'upload' => true,
+            'disk' => 'public'
+        ]);
     }
 
     /**

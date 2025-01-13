@@ -40,7 +40,7 @@ return [
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),
-            'url' => env('APP_URL').'/storage',
+            'url' => env('http://my-laravel-project.com').'/storage',
             'visibility' => 'public',
             'throw' => false,
         ],
