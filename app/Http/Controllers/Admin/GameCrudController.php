@@ -45,6 +45,46 @@ class GameCrudController extends CrudController
          * Columns can be defined using the fluent syntax:
          * - CRUD::column('price')->type('number');
          */
+
+        $this->crud->modifyColumn('manufacturer_id', [
+            'type' => 'select',
+            'label' => 'Manufacturer',
+            'entity' => 'manufacturer',
+            'attribute' => 'name',
+            'model' => 'App\Models\Manufacturer'
+        ]);
+
+        $this->crud->modifyColumn('cover', [
+            'label' => "Cover Art",
+            'name' => "cover",
+            'type' => 'view',
+            'view' => 'vendor.backpack.crud.columns.cover_art',
+        ]);
+    }
+
+    protected function setupShowOperation()
+    {
+        CRUD::setFromDb(); // set columns from db columns.
+
+        /**
+         * Columns can be defined using the fluent syntax:
+         * - CRUD::column('price')->type('number');
+         */
+
+        $this->crud->modifyColumn('manufacturer_id', [
+            'type' => 'select',
+            'label' => 'Manufacturer',
+            'entity' => 'manufacturer',
+            'attribute' => 'name',
+            'model' => 'App\Models\Manufacturer'
+        ]);
+
+        $this->crud->modifyColumn('cover', [
+            'label' => "Cover Art",
+            'name' => "cover",
+            'type' => 'view',
+            'view' => 'vendor.backpack.crud.columns.cover_art',
+        ]);
     }
 
     /**
@@ -74,7 +114,8 @@ class GameCrudController extends CrudController
         CRUD::addField([
             'name' => 'description',
             'type' => 'textarea',
-            'label' => 'Description'
+            'label' => 'Description',
+            "escaped" => false
         ]);
     
         CRUD::addField([
@@ -108,11 +149,10 @@ class GameCrudController extends CrudController
         ]);
 
         $this->crud->addField([
-            'name' => 'cover',
+            'label' => "Cover Art",
+            'name' => "cover",
             'type' => 'upload',
-            'label' => 'Cover Art',
             'upload' => true,
-            'disk' => 'public'
         ]);
     }
 

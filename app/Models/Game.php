@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
@@ -14,11 +15,14 @@ class Game extends Model
         'release_date',
         'description',
         'manufacturer_id',
-        'genre_id',
+        'genres',
+        'rating',
         'cover'
     ];
     
+    use HasFactory;
     use CrudTrait;
+
     public function manufacturer()
     {
         return $this->belongsTo(Manufacturer::class);
@@ -33,23 +37,22 @@ class Game extends Model
     {
         parent::boot();
         static::deleting(function($obj) {
-            if ($obj->image) {
+            if ($obj->cover) {
                 // Remove 'storage/' from the start of the path to get the relative path
-                $path = str_replace('storage/', '', $obj->image);
+                $path = str_replace('storage/', '', $obj->cover);
                 $response = Storage::disk('public')->delete($path);
             }
         });
     }
 
-
-    private function deleteImage($attribute_name) {
+    private function deleteCover($attribute_name) {
         // Remove 'storage/' from the start of the path to get the relative path
         $path = str_replace('storage/', '', $this->{$attribute_name});
         $response = Storage::disk('public')->delete($path);
     }
 
 
-    public function setImageAttribute($value)
+    public function setCoverAttribute($value)
     {
         $attribute_name = "cover";
         // destination path relative to the disk above
@@ -57,11 +60,11 @@ class Game extends Model
 
         // if the image was erased
         if ($value==null) {
-            $this->deleteImage($attribute_name);
+            $this->deleteCover($attribute_name);
             // set null in the database column
             $this->attributes[$attribute_name] = null;
         } else {
-            $this->deleteImage($attribute_name);
+            $this->deleteCover($attribute_name);
             $disk = "public";
             // filename is generated -  md5($file->getClientOriginalName().random_int(1, 9999).time()).'.'.$file->getClientOriginalExtension()
             $this->uploadFileToDisk($value, $attribute_name, $disk, $destination_path, $fileName = null);

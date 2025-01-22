@@ -25,7 +25,8 @@ class ManufacturerRequest extends FormRequest
     public function rules()
     {
         return [
-            // 'name' => 'required|min:5|max:255'
+            'name' => 'required|string|max:255',
+            'establishment_date' => 'required|date'
         ];
     }
 
@@ -49,7 +50,7 @@ class ManufacturerRequest extends FormRequest
     public function messages()
     {
         return [
-            //
+            'establishment_date.required' => 'Please provide an establishment date.',
         ];
     }
 }

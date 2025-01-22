@@ -1,0 +1,77 @@
+.search-container {
+    margin: auto;
+    text-align: center;
+}
+
+.search-container * {
+    margin: 3px;
+}
+
+.search-container input {
+    border: 3px solid #b0b0b0;
+    border-radius: 12px;
+    padding: 12px;
+    outline: none;
+    transition: border 0.2s;
+}
+
+.search-container select {
+    appearance: none;
+    padding: 12px;
+    border: 3px solid #b0b0b0;
+    border-radius: 12px;
+    transition: border 0.2s;
+    outline: none;
+}
+
+.search-container input:focus, .search-container select:focus {
+    border: 3px solid cornflowerblue;
+}
+
+.search-container button {
+    background: cornflowerblue;
+    padding: 12px;
+    color: #fff;
+    outline: none;
+    transition: transform 0.2s;
+    border-radius: 12px;
+}
+
+.search-container button:hover, .search-container:focus-visible {
+    transform: scale(1.05);
+}
+
+#results-container {
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    padding: 42px;
+    flex-direction: column;
+    grid-gap: 36px;
+}
+
+.game-item {
+    width: 100%;
+    border: 3px solid #b0b0b0;
+    border-radius: 12px;
+    padding: 24px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 24px;
+}
+
+.empty-cover {
+    width: 150px;
+    height: 225px;
+    background: #b0b0b0;
+    border-radius: 12px;
+}
+
+.game-item img {
+    border-radius: 12px;
+    width: 150px;
+}
+
+.game-item p {
+    margin: 12px 0px;
+}
